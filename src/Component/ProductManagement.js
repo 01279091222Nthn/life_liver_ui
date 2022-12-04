@@ -1,0 +1,15 @@
+import { useState } from "react";
+
+const ProductManagement = () =>{
+
+    return(
+        <>
+        <div>
+            
+        </div>
+        </>
+    )
+
+}
+
+export default ProductManagement;
