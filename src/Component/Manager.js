@@ -1,32 +1,27 @@
 import { React, useContext, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../Store/Provider";
-import Dialog from "./Dialog";
-import { DialogSearch } from "./DialogSearch";
+
 
 const menu = [
     {
-        tieude: 'Trang chủ',
-        url: '/',
-    },
-    {
         tieude: 'Sản phẩm',
-        url: '/Product',
+        url: '/Manager/Product',
     },
     {
         tieude: 'Tin tức',
-        url: '/News',
+        url: '/Manager/News',
     },
     {
-        tieude: 'Về chúng tôi',
-        url: '/Information',
+        tieude: 'Hoá đơn',
+        url: '/Manager/Order',
     },
 ];
 
-const Customer = ({ children }) => {
 
 
+const Manager = ({ children }) => {
 
     const { cart } = useContext(Context)
     const [index, setIndex] = useState(0)
@@ -45,11 +40,8 @@ const Customer = ({ children }) => {
         };
     }, [])
 
-
     return (
         <div style={{ fontFamily: 'Montserrat' }}>
-            <Dialog />
-            <DialogSearch />
             <Toaster
                 position="top-right"
                 reverseOrder={false}
@@ -62,31 +54,27 @@ const Customer = ({ children }) => {
                     ))}
                 </div>
                 <div className="menu-social">
-                    <button>
-                        <i class="bi bi-facebook"></i>
-                    </button>
-                    <button>
-                        <i class="bi bi-youtube"></i>
-                    </button>
+                    <Link to='/'>
+                        <button>
+                            <i class="bi bi-box-arrow-right"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className={showMenu ? 'blur' : ''} onClick={() => setShowMenu(!showMenu)}></div>
-            <div className={pos > 0 ? 'header scrolled' : 'header'}>
+            <div className={pos > 0 ? "header scrolled" : "header"}>
                 <div className="row header-tab">
-                    <div className="col-2 header-btn">
+                    <div className="col-1">
                         <button className="btn btn-icon" onClick={() => setShowMenu(!showMenu)}><i class="bi bi-list"></i></button>
                     </div>
-                    <div className="col-8">
+                    <div className="col-10" style={{ display: 'flex', justifyContent: 'center' }}>
                         <img className={pos > 0 ? 'logo scrolled' : 'logo'} src="http://127.0.0.1:8000/media/uploads/z4040943532997_f4b86dab4345557c70e50901b474142b.jpg" alt="logo" />
                     </div>
-                    <div className="col-2 header-btn" style={{ display: 'flex' }}>
-                        <button className="btn btn-icon" data-toggle="modal" data-target="#search"><i class="bi bi-search"></i></button>
-                        <button className="btn btn-icon" data-toggle="modal" data-target="#detection"><i class="bi bi-image"></i></button>
-                        <button className="btn btn-icon"> <Link to={'/Cart'} className='link'><i class="bi bi-cart"></i></Link> {cart.length > 0 ? cart.length : null} </button>
+                    <div className="col-1 header-btn" style={{ display: 'flex' }}>
                     </div>
                 </div>
             </div>
-            <div style={{ paddingLeft: '10px', position: 'relative' }}>
+            <div style={{ paddingLeft: '10px' }}>
                 {/* Phần body */}
                 <div className="row" style={{ height: '80px' }}></div>
                 <div className="row">
@@ -117,7 +105,7 @@ const Customer = ({ children }) => {
                             </div>
                         </div>
                         <a className="line-footer"></a>
-                        <p style={{ margin: 'auto' }}>@BOGAN 2022</p>
+                        <p>@BOGAN 2022</p>
                     </div>
                 </div>
             </div>
@@ -125,4 +113,4 @@ const Customer = ({ children }) => {
     )
 }
 
-export default Customer
+export default Manager

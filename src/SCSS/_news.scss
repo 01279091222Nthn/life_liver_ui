@@ -1,0 +1,27 @@
+.ls-news {
+  width: 80%;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 20px rgba($color: #000000, $alpha: 0.05);
+}
+
+.new-detail {
+  width: 80%;
+  margin: 30px auto;
+  img{
+    max-width: 100%;
+  }
+}
+
+.news-tittle{
+  width: 80%;
+  margin: 30px auto;
+  h2{
+    font-weight: bold;
+  }
+  p{
+    font-style: italic;
+  }
+}

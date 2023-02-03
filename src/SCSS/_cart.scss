@@ -1,0 +1,153 @@
+.table {
+    box-shadow: 2px 2px 20px rgba($color: #000000, $alpha: 0.05);
+
+    thead {
+        background-color: #039B7B;
+
+    }
+
+    tbody {
+        border-left: none;
+        border-right: none;
+
+        tr:hover {
+            background-color: rgb(235, 235, 235);
+
+            .btn-feature {
+                visibility: unset;
+            }
+        }
+    }
+}
+
+.input-quantity {
+    font-size: 20px;
+    border: 1px solid lightgray;
+    width: fit-content;
+
+    input {
+        border: none;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        border: none;
+        background-color: #fff;
+
+        &:hover {
+            color: lightgray;
+        }
+    }
+}
+
+.shopping-cart {
+    border-bottom: 1px solid lightgray;
+    padding: 30px;
+
+    .col-6 {
+        img {
+            margin: 10px;
+            height: 158px;
+            width: 158px;
+        }
+    }
+    .rm-product{
+        margin: 20px 0;
+        color: gray;
+        cursor: pointer;
+        transition: 100ms linear;
+        &:hover{
+            color: #000000;
+        }
+    }
+}
+
+.summary-cart {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid lightgray;
+
+    .total-cart {
+        margin: 20px auto;
+        width: fit-content;
+        text-align: center;
+    }
+
+    .col-md-6 {
+        text-align: center;
+    }
+
+    button {
+        width: 80%;
+        margin: 10px auto;
+        padding: 20px 10px;
+        background-color: #fff;
+        border: 2px solid black;
+        transition: 100ms linear;
+
+        &:hover {
+            background-color: #039B7B;
+            color: #fff;
+        }
+
+        &.thanhtoan {
+            background-color: black;
+            color: #fff;
+
+            &:hover {
+                background-color: #039B7B;
+                color: #000000;
+            }
+        }
+
+        &.khongthanhtoan {
+            background-color: #fff;
+            color: lightgray;
+            border: 2px solid lightgray;
+        }
+    }
+}
+
+.table-bordered td,
+.table-bordered th {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+
+.btn-feature {
+    height: 35px !important;
+    width: 35px !important;
+    padding: 5px;
+    float: right;
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    margin: 0 5px;
+
+    &.delete:hover {
+        background-color: red;
+        color: white;
+    }
+
+    &.edit:hover {
+        background-color: #039B7B;
+        color: white;
+    }
+
+    &.add {
+        visibility: unset !important;
+        background-color: unset;
+        color: white;
+
+        :hover {
+            color: #000000;
+        }
+    }
+}

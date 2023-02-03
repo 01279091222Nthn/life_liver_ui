@@ -13,6 +13,15 @@
   }
 }
 
+.modal-dialog {
+  pointer-events: all;
+}
+
+.table{
+  width: 90%;
+  margin: 5%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,17 +1,29 @@
-import {  useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createContext } from "react";
 
 export const Context = createContext({})
 
-export const Provider = ({children}) =>{
+export const Provider = ({ children }) => {
 
-    const [auth,setAuth]=useState()
+    const [auth, setAuth] = useState();
+    const [result, setResult] = useState([]);
+    const [cart, setCart] = useState([]);
+    const [error404, setError404] = useState(true);
+    const [search,setSearch] = useState({
+        text:'',
+        filter:0,
+        benh:[]
+    });
 
-    useEffect(()=>
-        setAuth(false)
-    ,[])
-    return(
-        <Context.Provider value={{auth,setAuth}}>
+    useEffect(() =>
+        setAuth(true)
+        , [])
+
+    return (
+        <Context.Provider
+            value={{
+                auth, setAuth, result, setResult, cart, setCart, error404, setError404, search, setSearch
+            }}>
             {children}
         </Context.Provider>
     )
