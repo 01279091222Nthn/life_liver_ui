@@ -39,30 +39,59 @@ const Dialog = () => {
 
     const [files, setFiles] = useState([]);
     const { setResult } = useContext(Context)
-    const [option, setOption] = useState(0)
+    const [option, setOption] = useState(1)
     const videoRef = useRef(null)
     const photoRef = useRef(null)
+    const [file, setFile] = useState(false)
 
     const getUserCamera = () => {
-        navigator.mediaDevices.getUserMedia({
-            video: true
-        })
-            .then((stream) => {
-                let video = videoRef.current
-                video.srcObject = stream
-                video.play()
+        if (videoRef.current === null) {
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    height: 800,
+                    width: 800
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then((stream) => {
+                    videoRef.current.srcObject = stream
+                    videoRef.current.play()
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+        setFile(false)
     }
-
-    
 
     const stopUserCamera = () => {
-        
+        if (videoRef.current !== null) {
+            const stream = videoRef.current.srcObject
+            stream.getTracks().forEach((track) => {
+                track.stop();
+            });
+            videoRef.current.srcObject = null;
+        }
+    };
 
+    const takePhoto = () => {
+        let video = videoRef.current
+        let photo = photoRef.current
+
+        photo.width = 800;
+        photo.height = 720;
+
+        photo.getContext('2d').drawImage(video, 0, 0, photo.width, photo.height);
+
+        photo.toBlob((blob) => {
+            const file = new File([blob], "image.png");
+            const dT = new DataTransfer();
+            dT.items.add(file);
+            console.log([dT.files[0]]);
+            setFiles([dT.files[0]])
+        });
+        setFile(true)
     }
+
 
     const detection = () => {
         var image = new FormData();
@@ -124,6 +153,14 @@ const Dialog = () => {
                         <div className="camera-img-option">
                             <button
                                 onClick={() => {
+                                    setOption(1)
+                                    stopUserCamera()
+                                }}
+                                className="btn" style={option === 1 ? { backgroundColor: 'lightgray' } : {}}>
+                                <i class="bi bi-card-image"></i>
+                            </button>
+                            <button
+                                onClick={() => {
                                     setOption(0)
                                     getUserCamera()
                                 }}
@@ -131,18 +168,23 @@ const Dialog = () => {
                                 style={option === 0 ? { backgroundColor: 'lightgray' } : {}}>
                                 <i class="bi bi-camera"></i>
                             </button>
-                            <button
-                                onClick={() => {
-                                    setOption(1)
-                                    stopUserCamera()
-                                }}
-                                className="btn" style={option === 1 ? { backgroundColor: 'lightgray' } : {}}>
-                                <i class="bi bi-card-image"></i>
-                            </button>
                         </div>
                         {
                             option === 0 ?
-                                <video className="container" ref={videoRef} />
+                                <div className="container" style={{textAlign:'center'}}>
+                                    <video className="container" style={file === true ? { display: 'none' } : { display: 'unset' }} ref={videoRef}></video>
+                                    <canvas className="container" style={file === false ? { display: 'none' } : { display: 'unset' }} ref={photoRef} />
+                                    <button
+                                    className="cam-btn"
+                                    onClick={() => takePhoto()}>
+                                        <i class="bi bi-camera"></i>
+                                    </button>
+                                    <button 
+                                    className="cam-btn"
+                                    onClick={() => getUserCamera()}>
+                                        <i class="bi bi-arrow-clockwise"></i>
+                                    </button>
+                                </div>
                                 : <section className="container">
                                     <div style={{ height: '100px', padding: '10px', color: 'gray', border: '2px dashed lightgray', borderRadius: '8px', textAlign: 'center' }} {...getRootProps({ className: 'dropzone' })}>
                                         <input {...getInputProps()} />

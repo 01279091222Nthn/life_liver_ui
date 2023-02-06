@@ -99,6 +99,27 @@
     overflow-y: scroll;
 }
 
+.payment-success-box{
+    margin: 50px 0;
+    text-align: center;
+    i{
+        font-size: 88px;
+        color: #039B7B;
+    }
+    h2{
+        font-weight: bold;
+    }
+    h5{
+        color: gray;
+    }
+}
+
+@media (max-width:1000px) {
+    .info-box{
+        width: 80%;
+    }
+}
+
 .paying-box2 {
     width: 50%;
     height: fit-content;

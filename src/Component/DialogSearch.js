@@ -54,6 +54,7 @@ export const DialogSearch = () => {
                             {
                                 option.map((o, i) => (
                                     <button
+                                        key={i}
                                         onClick={() => {
                                             setSearch({ ...search, filter: i })
                                         }}

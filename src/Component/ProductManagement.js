@@ -34,7 +34,7 @@ const ProductManagement = () => {
                         <tr>
                             <th>STT</th>
                             <th scope="col">Tên lá</th>
-                            <th scope="col">Số lượng còn
+                            <th scope="col">Số lượng còn (1 gói - 100 gram)
                                 <Link to='/Manager/Product/Add'><button className="btn btn-feature add">
                                     <i class="bi bi-plus-lg"></i>
                                 </button></Link>

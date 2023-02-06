@@ -9,9 +9,10 @@ import News from "../Component/News";
 import Product from "../Component/Product";
 import ProductDetail from "../Component/ProductDetail";
 import Cart from "../Component/Cart";
-import { Paying } from "../Component/Paying";
 import { Home } from "../Component/Home";
 import { VerifyOTP } from "../Component/VerifyOTP";
+import { Payment } from "../Component/Payment";
+import SuccessPayment from "../Component/SuccessPayment";
 
 const Public = () => {
 
@@ -27,8 +28,9 @@ const Public = () => {
                 <Route path="News/:maTinTuc" element={<Customer><NewsDetail /></Customer>} />
                 <Route path="Product/:maLa" element={<Customer><ProductDetail /></Customer>} />
                 <Route path="Cart" element={<Customer><Cart /></Customer>} />
-                <Route path="Paying" element={<Customer><Paying/></Customer>} />
+                <Route path="Payment" element={<Customer><Payment/></Customer>} />
                 <Route path="Verify" element={<Customer><VerifyOTP/></Customer>}/>
+                <Route path="Payment/Success" element={<Customer><SuccessPayment/></Customer>} />
             </Routes>
         </>
     )

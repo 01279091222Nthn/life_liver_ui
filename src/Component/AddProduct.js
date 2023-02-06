@@ -66,7 +66,6 @@ export const AddProduct = () => {
             giaBan: giaBan.current.value,
             noiDungKhac: quill.root.innerHTML
         }
-        console.log(laThuoc);
         axios.post('http://127.0.0.1:8000/lathuoc/', laThuoc,{
             headers: {
                 "Content-Type": "multipart/form-data",

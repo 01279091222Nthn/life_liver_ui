@@ -6,24 +6,38 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../Store/Provider'
 
 
-export const Paying = () => {
+export const Payment = () => {
 
 
     const sdt = useRef()
+    const tenKhachHang = useRef()
+    const diaChi = useRef()
+    const ghiChu = useRef()
     const navigate = useNavigate()
     const { cart } = useContext(Context)
+    const [disable, setDisable] = useState(false)
 
     const sendOTP = () => {
-        const data = {
-            number: sdt.current.value
-        }
-        axios.post(`http://127.0.0.1:8000/auth/sendotp/`, data)
-            .then((res) => {
-                navigate('/Verify')
-            })
-            .catch((res) => {
-                toast.error('Thông tin xác thực không chính xác')
-            })
+        // setDisable(true)
+        // const data = {
+        //     number: sdt.current.value
+        // }
+        // axios.post(`http://127.0.0.1:8000/auth/sendotp/`, data)
+        //     .then((res) => {
+        //         navigate('/Verify')
+        //         setDisable(false)
+
+        //     })
+        //     .catch((res) => {
+        //         toast.error('Thông tin xác thực không chính xác')
+        //         setDisable(false)
+        //     })
+        localStorage.setItem('userInfo', JSON.stringify({
+            soDienThoai: sdt.current.value,
+            tenKhachHang: tenKhachHang.current.value,
+            diaChi: diaChi.current.value,
+            ghiChu: ghiChu.current.value,
+        }))
     }
 
     const sumSoLuong = () => {
@@ -39,6 +53,8 @@ export const Paying = () => {
             tong: tongTien + 30000,
         }
     }
+
+
 
     return (
         <div className='paying-box'>
@@ -80,25 +96,27 @@ export const Paying = () => {
                     </tr>
                 </table>
             </div>
-            <div className='info-box'>
+            <div div className='info-box' >
                 <h2>Thông Tin Thanh Toán</h2>
                 <div>
-                    <input placeholder='Họ và tên' />
+                    <input ref={tenKhachHang} placeholder='Họ và tên' disabled={disable} />
                 </div>
                 <div>
-                    <input ref={sdt} placeholder='Số điện thoại' />
+                    <input ref={sdt} placeholder='Số điện thoại' disabled={disable} />
                 </div>
                 <div>
-                    <input placeholder='Địa chỉ' />
+                    <input ref={diaChi} placeholder='Địa chỉ' disabled={disable} />
                 </div>
                 <div>
-                    <input placeholder='Ghi chú' />
+                    <input ref={ghiChu} placeholder='Ghi chú' disabled={disable} />
                 </div>
                 <button
+                    disabled={disable}
                     onClick={() => sendOTP()}
-                    className='btn'>Xác nhận</button>
+                    className='btn'>
+                    <i class="bi bi-arrow-right"></i>
+                </button>
             </div>
-
         </div>
     )
 }

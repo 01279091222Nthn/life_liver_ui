@@ -57,8 +57,8 @@ const Customer = ({ children }) => {
             <div className={showMenu ? 'menu-on' : 'menu-off'}>
                 <button className="btn btn-icon" onClick={() => setShowMenu(!showMenu)}><i class="bi bi-x-lg"></i></button>
                 <div className="menu">
-                    {menu.map((m) => (
-                        <Link to={m.url}><div>{m.tieude}</div></Link>
+                    {menu.map((m,i) => (
+                        <Link key={i} to={m.url}><div>{m.tieude}</div></Link>
                     ))}
                 </div>
                 <div className="menu-social">

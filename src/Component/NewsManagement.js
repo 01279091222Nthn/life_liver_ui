@@ -26,7 +26,7 @@ const NewsManagement = () => {
                 })
         }
         getTinTuc()
-    }, [deleteTinTuc,])
+    }, [])
 
     const formatDate = (date) => {
         var d = new Date(date);

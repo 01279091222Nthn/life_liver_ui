@@ -30,7 +30,9 @@ const Product = () => {
 
   const updateCart = (maLa, soLuong, tenLa, giaBan, hinhAnh) => {
     if (!cart.some((d) => maLa === d.maLa)) {
-      setCart((data) => [...data, { maLa, soLuong, tenLa, giaBan, hinhAnh}]);
+      const newCart = [...cart, { maLa, soLuong, tenLa, giaBan, hinhAnh}];
+      setCart(newCart)
+      localStorage.setItem('cart',JSON.stringify(newCart))
     }
   }
 

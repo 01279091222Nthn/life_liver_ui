@@ -25,6 +25,7 @@ export const Home = () => {
   const flickityOptions1 = {
     wrapAround: true,
     autoPlay: 3000,
+    initialIndex: 1,
   }
   const flickityOptions2 = {
     groupCells: true,

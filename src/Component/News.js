@@ -35,7 +35,8 @@ const News = () => {
         if (hour.length < 2) hour = "0" + hour;
         if (minutes.length < 2) minutes = "0" + minutes;
 
-        return [hour, minutes].join(":") + " " + [day, month, year].join("/");
+        // return [hour, minutes].join(":") + " " + [day, month, year].join("/");
+        return [day, month, year].join("/");
     }
 
     return (

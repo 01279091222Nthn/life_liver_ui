@@ -23,16 +23,19 @@ export const Cart = () => {
     const removeProduct = (mala, index) => {
         const newCart = cart.filter(c => c.maLa !== mala)
         setCart(newCart)
+        localStorage.setItem('cart',JSON.stringify(newCart))
     }
 
     const updateSL = (index, val) => {
         const newCart = cart.map((c, i) => index === i ? { ...c, soLuong: c.soLuong + val } : c)
         setCart(newCart)
+        localStorage.setItem('cart',JSON.stringify(newCart))
     }
 
     const onChangeSL = (index, e) => {
         const newCart = cart.map((c, i) => index === i ? { ...c, soLuong: e.target.value } : c)
         setCart(newCart)
+        localStorage.setItem('cart',JSON.stringify(newCart))
     }
 
     useEffect(() => {
@@ -139,7 +142,7 @@ export const Cart = () => {
                             </Link>
                         </div>
                         <div className="col-12 col-md-6">
-                            <button className={cart.length > 0 ? "thanhtoan" : "khongthanhtoan"} onClick={() => cart.length > 0 ? navigate('/Paying') : ''}>
+                            <button className={cart.length > 0 ? "thanhtoan" : "khongthanhtoan"} onClick={() => cart.length > 0 ? navigate('/Payment') : ''}>
                                 Thanh toán
                             </button>
                         </div>

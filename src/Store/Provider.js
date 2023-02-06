@@ -16,8 +16,10 @@ export const Provider = ({ children }) => {
     });
 
     useEffect(() =>
+    {
         setAuth(true)
-        , [])
+        setCart(JSON.parse(localStorage.getItem('cart')))
+    },[])
 
     return (
         <Context.Provider
