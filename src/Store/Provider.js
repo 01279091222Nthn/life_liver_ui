@@ -18,7 +18,9 @@ export const Provider = ({ children }) => {
     useEffect(() =>
     {
         setAuth(true)
-        setCart(JSON.parse(localStorage.getItem('cart')))
+        if (localStorage["cart"]) {
+            setCart(JSON.parse(localStorage.getItem('cart')))
+        }
     },[])
 
     return (

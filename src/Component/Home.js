@@ -57,7 +57,10 @@ export const Home = () => {
         <img style={{ maxHeight: '500px' }} src="http://127.0.0.1:8000/media/uploads/z4053386410104_bc9aa9917d7035951d51feb58007744e.jpg" />
 
       </Flickity>
-      <div style={{marginTop:'50px'}}>
+      <div style={{ marginTop: '50px' }}>
+        <div className='top-product'>
+          <p>Sản phẩm nổi bật</p>
+        </div>
         <Flickity
           options={flickityOptions2} // takes flickity options {}
           disableImagesLoaded={false} // default false

@@ -9,7 +9,10 @@ const Predition = () => {
 
     return (
         <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '50% 50%', height: '90vh', padding: 20 }}>
+            <div>
+                <p className='bread'>
+                    <span>Kết quả tra cứu</span>
+                </p>
                 {
                     (result).map((r, i) => (
                         <div className='res-predict' key={i}>

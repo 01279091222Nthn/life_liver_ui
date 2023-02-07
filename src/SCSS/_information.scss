@@ -1,15 +1,29 @@
-.bt{
-    height: 100px;
-    width: 200px;
-    background-color:blueviolet;
-    position: relative;
-}
-.bt::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height:5px;
+.aboutus-box{
+    margin: 20px 0;
+    height: 300px;
     width: 100%;
-    background-color: red;
+    transition: 1000ms linear;
+    position: relative;
+    &:hover{
+        .aboutus-card{
+            top: -10px;
+        }
+    }
+}
+
+.aboutus-card{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 5px solid #039B7B;
+    transition: 100ms linear;
+    top: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.aboutus-tittle{
+    font-weight: bold;
+    font-size: 30px;
+
 }

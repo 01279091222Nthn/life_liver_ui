@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 99%;
 }
 
 code {
@@ -16,15 +17,6 @@ code {
 html, body{
   margin: 0px;
   padding: 0px;
-}
-
-.res-predict {
-  display: flex;
-  height: 250px;
-  width: 90%;
-  border: 1px solid rgb(219, 219, 219);
-  border-radius: 5px;
-  margin: 10px 0 10px 0;
 }
 
 .wrapper {

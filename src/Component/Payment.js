@@ -18,25 +18,26 @@ export const Payment = () => {
     const [disable, setDisable] = useState(false)
 
     const sendOTP = () => {
-        // setDisable(true)
-        // const data = {
-        //     number: sdt.current.value
-        // }
-        // axios.post(`http://127.0.0.1:8000/auth/sendotp/`, data)
-        //     .then((res) => {
-        //         navigate('/Verify')
-        //         setDisable(false)
+        setDisable(true)
+        const data = {
+            number: sdt.current.value
+        }
+        axios.post(`http://127.0.0.1:8000/auth/sendotp/`, data)
+            .then((res) => {
+                navigate('/Payment/Verify')
+                setDisable(false)
 
-        //     })
-        //     .catch((res) => {
-        //         toast.error('Thông tin xác thực không chính xác')
-        //         setDisable(false)
-        //     })
-        localStorage.setItem('userInfo', JSON.stringify({
+            })
+            .catch((res) => {
+                toast.error('Thông tin xác thực không chính xác')
+                setDisable(false)
+            })
+        localStorage.setItem('payment', JSON.stringify({
             soDienThoai: sdt.current.value,
             tenKhachHang: tenKhachHang.current.value,
             diaChi: diaChi.current.value,
             ghiChu: ghiChu.current.value,
+            tongTien:sumSoLuong().tong
         }))
     }
 

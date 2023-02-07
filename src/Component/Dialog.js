@@ -80,13 +80,19 @@ const Dialog = () => {
         photo.width = 800;
         photo.height = 720;
 
-        photo.getContext('2d').drawImage(video, 0, 0, photo.width, photo.height);
+        const ctx = photo.getContext('2d')
+        const posX = photo.width * -1
+        ctx.save()
+        ctx.scale(-1, 1)
+        ctx.drawImage(video, posX, 0, photo.width, photo.height)
+        ctx.restore()
+
+        const date = new Date()
 
         photo.toBlob((blob) => {
-            const file = new File([blob], "image.png");
+            const file = new File([blob], date.toISOString() + ".png");
             const dT = new DataTransfer();
             dT.items.add(file);
-            console.log([dT.files[0]]);
             setFiles([dT.files[0]])
         });
         setFile(true)
@@ -104,6 +110,7 @@ const Dialog = () => {
             },
         }).then((res) => {
             setResult(res.data)
+            console.log(res.data);
         });
     }
 
@@ -171,17 +178,17 @@ const Dialog = () => {
                         </div>
                         {
                             option === 0 ?
-                                <div className="container" style={{textAlign:'center'}}>
+                                <div className="container" style={{ textAlign: 'center' }}>
                                     <video className="container" style={file === true ? { display: 'none' } : { display: 'unset' }} ref={videoRef}></video>
                                     <canvas className="container" style={file === false ? { display: 'none' } : { display: 'unset' }} ref={photoRef} />
                                     <button
-                                    className="cam-btn"
-                                    onClick={() => takePhoto()}>
+                                        className="cam-btn"
+                                        onClick={() => takePhoto()}>
                                         <i class="bi bi-camera"></i>
                                     </button>
-                                    <button 
-                                    className="cam-btn"
-                                    onClick={() => getUserCamera()}>
+                                    <button
+                                        className="cam-btn"
+                                        onClick={() => getUserCamera()}>
                                         <i class="bi bi-arrow-clockwise"></i>
                                     </button>
                                 </div>

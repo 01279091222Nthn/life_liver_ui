@@ -20,7 +20,7 @@ const menu = [
     },
     {
         tieude: 'Về chúng tôi',
-        url: '/Information',
+        url: '/AboutUs',
     },
 ];
 
@@ -57,17 +57,21 @@ const Customer = ({ children }) => {
             <div className={showMenu ? 'menu-on' : 'menu-off'}>
                 <button className="btn btn-icon" onClick={() => setShowMenu(!showMenu)}><i class="bi bi-x-lg"></i></button>
                 <div className="menu">
-                    {menu.map((m,i) => (
+                    {menu.map((m, i) => (
                         <Link key={i} to={m.url}><div>{m.tieude}</div></Link>
                     ))}
                 </div>
                 <div className="menu-social">
-                    <button>
-                        <i class="bi bi-facebook"></i>
-                    </button>
-                    <button>
-                        <i class="bi bi-youtube"></i>
-                    </button>
+                    <a href={'https://www.facebook.com/profile.php?id=100090006040777'} target="_blank">
+                        <button>
+                            <i class="bi bi-facebook"></i>
+                        </button>
+                    </a>
+                    <Link>
+                        <button>
+                            <i class="bi bi-youtube"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className={showMenu ? 'blur' : ''} onClick={() => setShowMenu(!showMenu)}></div>
@@ -82,7 +86,14 @@ const Customer = ({ children }) => {
                     <div className="col-2 header-btn" style={{ display: 'flex' }}>
                         <button className="btn btn-icon" data-toggle="modal" data-target="#search"><i class="bi bi-search"></i></button>
                         <button className="btn btn-icon" data-toggle="modal" data-target="#detection"><i class="bi bi-image"></i></button>
-                        <button className="btn btn-icon"> <Link to={'/Cart'} className='link'><i class="bi bi-cart"></i></Link> {cart.length > 0 ? cart.length : null} </button>
+                        <Link to={'/Cart'} className='link'>
+                            <button className="btn btn-icon" style={{position:'relative'}}>
+                                <i class="bi bi-cart"></i>
+                                {cart.length>0?
+                                <span className="cart-num">{cart.length}</span>
+                                :<></>}
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -95,7 +106,7 @@ const Customer = ({ children }) => {
                     </div>
                 </div>
                 {/* Phần footer */}
-                <div className="row">
+                <footer className="row">
                     <div className="footer">
                         <div className="row">
                             <div className="col">
@@ -119,7 +130,7 @@ const Customer = ({ children }) => {
                         <a className="line-footer"></a>
                         <p style={{ margin: 'auto' }}>@BOGAN 2022</p>
                     </div>
-                </div>
+                </footer>
             </div>
         </div>
     )

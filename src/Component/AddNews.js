@@ -60,12 +60,13 @@ export const AddNews = () => {
 
     const onHandleAddTinTuc = () => {
         const date = new Date()
+        date.setHours(date.getHours()-7); 
         const data = {
             maTinTuc: removeAccents(tieuDe.current.value),
             hinhAnh: hinhAnh.current.files[0],
             tieuDe: tieuDe.current.value,
             noiDungKhac: quill.root.innerHTML,
-            ngayDang: '2023-02-05',
+            ngayDang: date.toISOString().split('T')[0],
         }
         console.log(data);
         axios.post('http://127.0.0.1:8000/tintuc/', data, {
