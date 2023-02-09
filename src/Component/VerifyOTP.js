@@ -39,7 +39,6 @@ export const VerifyOTP = () => {
 
         const date = new Date()
         var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-        console.log(isoDateTime);
 
         const customer = {
             maKhachHang:payment.soDienThoai.slice(-4) + date.getTime().toString(),
@@ -62,6 +61,8 @@ export const VerifyOTP = () => {
             'soLuong': cart.map(c => c.soLuong),
             'maLa': cart.map(c => c.maLa),
         }
+
+        console.log(donhang);
 
         axios.post(`http://127.0.0.1:8000/khachhang/`, customer)
             .then((res) => {

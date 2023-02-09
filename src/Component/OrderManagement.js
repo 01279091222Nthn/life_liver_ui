@@ -39,7 +39,7 @@ const OrderManagement = () => {
     }
 
     const deleteDonHang = (maDonHang) => {
-        axios.delete(`http://127.0.0.1:8000/donhang/`, maDonHang)
+        axios.delete(`http://127.0.0.1:8000/donhang/delete/`, maDonHang)
             .then((res) => {
 
             })
@@ -78,7 +78,8 @@ const OrderManagement = () => {
                                 <tr key={o.maDonHang}>
                                     <td>{o.maDonHang}</td>
                                     <td scope="row">{formatDate(o.ngayLap)}</td>
-                                    <td>{o.trangThai === 0 ? 'Chưa giao' : 'Đã giao'}
+                                    <td style={o.trangThai===1?{color:'#069C7B'}:{}}>
+                                        {o.trangThai === 0 ? 'Chưa giao' : 'Đã giao'}
                                         <div style={{ display: 'inline' }}>
                                         </div>
                                         <Link to={`/Manager/Order/${o.maDonHang}`}>

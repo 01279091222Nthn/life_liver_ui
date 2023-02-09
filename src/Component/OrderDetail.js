@@ -1,5 +1,6 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import moment from 'moment'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
@@ -9,10 +10,12 @@ export const OrderDetail = () => {
     const [order, setOrder] = useState([])
     const [customer, setCustomer] = useState([])
     const [orderDetail, setOrderDetail] = useState([])
+    const options = ["Chưa giao", "Đã giao"]
+    const option = useRef()
 
     useEffect(() => {
         const getOrderDetail = () => {
-            axios.get(`http://127.0.0.1:8000/ctdonhang/${params.maDonHang}/`)
+            axios.get(`http://127.0.0.1:8000/ctdonhang/get/${params.maDonHang}/`)
                 .then((res) => {
                     setOrder(res.data.DonHang)
                     setOrderDetail(res.data.CTDonHang)
@@ -23,12 +26,32 @@ export const OrderDetail = () => {
         window.scrollTo(0, 0);
     }, [])
 
+    const updateOrder = () => {
+        const data = {
+            trangThai: option.current.value
+        }
+        axios.patch(`http://127.0.0.1:8000/donhang/${params.maDonHang}/`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+    }
+
     return (
         <>
             <p className="bread">
                 <span>Chi tiết đơn hàng: {params.maDonHang}</span>
             </p>
             <div className='container'>
+
+                <div className='row'>
+                    <div className='col-2'>
+                        <p>Ngày lập:</p>
+                    </div>
+                    <div className='col-10'>
+                        <p>{moment(order.ngayLap).format('DD-MM-YYYY')}</p>
+                    </div>
+                </div>
 
                 <div className='row'>
                     <div className='col-2'>
@@ -71,7 +94,17 @@ export const OrderDetail = () => {
                         <p>Trạng thái:</p>
                     </div>
                     <div className='col-10'>
-                        <p style={order.trangThai === 0 ? { color: 'red' } : { color: 'blue' }}>{order.trangThai === 0 ? 'Chưa giao' : 'Đã giao'}</p>
+                        {
+                            order.trangThai !== undefined ?
+                                <select defaultValue={order.trangThai} ref={option}>
+                                    {
+                                        options.map((o, i) =>
+                                            <option key={i} value={i}>{o}</option>
+                                        )
+                                    }
+                                </select>
+                                : <></>
+                        }
                     </div>
                 </div>
 
@@ -98,7 +131,7 @@ export const OrderDetail = () => {
 
                 <div className='row' style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Link to={'/Manager/Order'}>
-                        <button className='btn-submit btn' >Thoát</button>
+                        <button className='btn-submit btn' onClick={() => updateOrder()} >Thoát</button>
                     </Link>
                 </div>
             </div>
