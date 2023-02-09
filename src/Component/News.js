@@ -8,6 +8,22 @@ const News = () => {
 
     const [data, setData] = useState([])
     const { search } = useContext(Context)
+    const [page, setPage] = useState({
+        current: 0,
+        start: 0,
+        end: 5,
+    })
+
+    const onChangePage = (num) => {
+        const i = num
+        setPage(
+            {
+                ...page,
+                current: i,
+                start: i * 5,
+                end: i * 5 + 5,
+            })
+    }
 
     useEffect(() => {
         const GetData = async () => {
@@ -20,6 +36,14 @@ const News = () => {
         };
         GetData();
     }, [search]);
+
+    const pagelist = () => {
+        const lis = []
+        for (let i = 1; i <= Math.ceil(data.length / 5); i++) {
+            lis.push(<li class="page-item" onClick={() => onChangePage(i - 1)}><a class="page-link" href="#">{i}</a></li>)
+        }
+        return lis
+    }
 
 
     const formatDate = (date) => {
@@ -41,7 +65,7 @@ const News = () => {
 
     return (
         <>
-            <div style={{ height: '90vh' }}>
+            <div>
                 <p className="bread">
                     <span>Tin tức</span>
                     {
@@ -53,19 +77,46 @@ const News = () => {
                             : <></>
                     }
                 </p>
-                {data.map((d, i) => (
-                    <Link key={i} to={d.maTinTuc} className='link'>
-                        <div className="ls-news">
-                            <div style={{ display: 'flex', height: '85%' }}>
-                                <img src={d.hinhAnh} style={{ maxHeight: '150px', maxWidth: '200px', alignSelf: 'center' }} alt='' />
-                                <div style={{ margin: 10, fontSize: '30px' }}>{d.tieuDe}</div>
+                <div className="">
+                    {data.slice(page.start, page.end).map((d, i) => (
+                        <Link key={i} to={d.maTinTuc} className='link'>
+                            <div className="ls-news">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <img src={d.hinhAnh} style={{maxWidth:'80%'}} alt='' />
+                                    </div>
+                                    <div className="col-8" style={{ display: 'flex', flexDirection: 'column' }}>
+                                        <p>{d.tieuDe}</p>
+                                        <p style={{ color: 'grey' }}>{formatDate(d.ngayDang)}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p style={{ float: 'right', color: 'grey' }}>{formatDate(d.ngayDang)}</p>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
+                        </Link>
+                    ))}
+                </div>
+                <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {
+                                pagelist().map((d) => (
+                                    <>{d}</>
+                                ))
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </>
     )

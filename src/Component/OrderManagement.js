@@ -5,6 +5,22 @@ import { Link } from "react-router-dom";
 const OrderManagement = () => {
 
     const [order, setOrder] = useState([])
+    const [page, setPage] = useState({
+        current: 0,
+        start: 0,
+        end: 5,
+    })
+
+    const onChangePage = (num) => {
+        const i = page.current + num
+        setPage(
+            {
+                ...page,
+                current: i,
+                start: i * 5,
+                end: i * 5 + 5,
+            })
+    }
 
     const formatDate = (date) => {
         var d = new Date(date);
@@ -22,22 +38,22 @@ const OrderManagement = () => {
         return [hour, minutes].join(":") + " " + [day, month, year].join("/");
     }
 
-    const deleteDonHang = (maDonHang) =>{
-        axios.delete(`http://127.0.0.1:8000/donhang/`,maDonHang)
-        .then((res)=>{
+    const deleteDonHang = (maDonHang) => {
+        axios.delete(`http://127.0.0.1:8000/donhang/`, maDonHang)
+            .then((res) => {
 
-        })
+            })
     }
 
-    useEffect(()=>{
-        const getOrder = () =>{
+    useEffect(() => {
+        const getOrder = () => {
             axios.get('http://127.0.0.1:8000/donhang/')
-            .then((res)=>{
-                setOrder(res.data)
-            })
+                .then((res) => {
+                    setOrder(res.data)
+                })
         }
         getOrder()
-    },[])
+    }, [])
 
     return (
         <>
@@ -58,11 +74,11 @@ const OrderManagement = () => {
                             <tr>
                                 <td colSpan={3}>Chưa có tin tức</td>
                             </tr> :
-                            order.map((o, i) => (
+                            order.slice(page.start, page.end).map((o, i) => (
                                 <tr key={o.maDonHang}>
                                     <td>{o.maDonHang}</td>
                                     <td scope="row">{formatDate(o.ngayLap)}</td>
-                                    <td>{o.trangThai===0?'Chưa giao':'Đã giao'}
+                                    <td>{o.trangThai === 0 ? 'Chưa giao' : 'Đã giao'}
                                         <div style={{ display: 'inline' }}>
                                         </div>
                                         <Link to={`/Manager/Order/${o.maDonHang}`}>
@@ -80,6 +96,15 @@ const OrderManagement = () => {
                             ))
                         }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan={3} style={{ textAlign: 'end' }}>
+                                <button className="btn" onClick={() => onChangePage(-1)}><i class="bi bi-caret-left"></i></button>
+                                {page.current + 1} - {Math.ceil(order.length / 5)}
+                                <button className="btn" onClick={() => onChangePage(1)}><i class="bi bi-caret-right"></i></button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </>

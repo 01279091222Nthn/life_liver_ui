@@ -15,6 +15,8 @@ export const AddProduct = () => {
     const giaBan = useRef()
     const [benhGan, setBenhGan] = useState([])
     const { quill, quillRef } = useQuill();
+    const [dieuTri, setDieuTri] = useState([])
+    
     React.useEffect(() => {
         if (quill) {
             quill.getModule('toolbar').addHandler('image', imageHandler);
@@ -55,6 +57,27 @@ export const AddProduct = () => {
         }
     }
 
+    const handleOnChangeDieuTri = async (maBenh) => {
+        dieuTri.includes(maBenh) ? (
+            setDieuTri(dieuTri.filter((d) => d !== maBenh))
+        )
+            : (
+                setDieuTri([...dieuTri, maBenh])
+            )
+    }
+
+    const updateDieuTri = async () => {
+        const data = {
+            'maLa': removeAccents(tenLa.current.value),
+            'maBenh': dieuTri
+        }
+        axios.post('http://127.0.0.1:8000/dieutri/update/', data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+    }
+
     const onAddLaThuoc = () => {
         const laThuoc = {
             maLa: removeAccents(tenLa.current.value),
@@ -73,6 +96,7 @@ export const AddProduct = () => {
         })
         .then((res) => {
             navigate('/Manager/Product')
+            updateDieuTri()
             toast.success('Thêm thành công');
         }).catch((res) => {
             toast.error('Thêm thất bại');
@@ -148,7 +172,9 @@ export const AddProduct = () => {
                     <div className='col-10'>
                         {benhGan.map((b) => (
                             <>
-                                <input type={'checkbox'} style={{ margin: '0 5px' }} />
+                                <input type={'checkbox'}
+                                onChange={()=>handleOnChangeDieuTri(b.maBenh)}
+                                style={{ margin: '0 5px' }} />
                                 <label>{b.tenBenh}</label>
                                 <br></br>
                             </>

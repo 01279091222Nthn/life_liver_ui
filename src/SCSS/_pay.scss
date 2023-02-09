@@ -1,7 +1,7 @@
 .paying-box{
     width: 100%;
     display: flex;
-    height: fit-content;
+    height: 550px;
 }
 
 .table-paying{
@@ -122,6 +122,12 @@
 
 @media (max-width:1000px) {
     .info-box{
-        width: 80%;
+        width: 100%;
+    }
+    .show-product-paying{
+        width: 100%;
+    }
+    .paying-box{
+        display: unset;
     }
 }

@@ -3,9 +3,11 @@
 
     thead {
         background-color: #039B7B;
-
+        color: #fff;
     }
-
+    th{
+        max-width: 0;
+    }
     tbody {
         border-left: none;
         border-right: none;

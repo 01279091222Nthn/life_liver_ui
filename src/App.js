@@ -10,24 +10,18 @@ import Public from './Layout/Public';
 
 
 function App() {
-    const {auth, error404} = useContext(Context)
+    const {auth} = useContext(Context)
     return (
         <>
             <Router>
-                {error404?
                     <Routes>
-                        {auth ?
+                        {auth?
                             <Route path='Manager/*' element={<Private/>}></Route>
                             :
-                            null
+                            <></>
                         }
                         <Route path='/*' element={<Public/>}></Route>
                     </Routes>
-                    :
-                    <Routes>
-                        <Route path="*" element={<Error404/>} />
-                    </Routes>
-                }
             </Router>
         </>
     );

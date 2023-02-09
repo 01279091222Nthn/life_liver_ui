@@ -10,17 +10,13 @@ const ProductDetail = () => {
   const params = useParams()
   const { cart, setCart } = useContext(Context)
 
-  const updateSL = (val) => {
-    if (!cart.some((d) => product.maLa === d.maLa)) {
-      setCart((data) => [...data, { maLa: product.maLa, soLuong: 1, tenLa: product.tenLa, giaBan: product.giaBan }]);
-    }
-    else {
-      let newCart = cart.map((c) => params.maLa === c.maLa ? { ...c, soLuong: c.soLuong + val } : c)
-      newCart = newCart.filter(c => c.soLuong > 0)
+  const updateCart = (maLa, soLuong, tenLa, giaBan, hinhAnh) => {
+    if (!cart.some((d) => maLa === d.maLa)) {
+      const newCart = [...cart, { maLa, soLuong, tenLa, giaBan, hinhAnh }];
       setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
     }
   }
-
 
   useEffect(() => {
     const GetData = async () => {
@@ -32,6 +28,7 @@ const ProductDetail = () => {
       })
     }
     GetData();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -46,7 +43,12 @@ const ProductDetail = () => {
             <p>Tên khác: {product.tenKhac}</p>
             <p>Tên khoa học: {product.tenKhoaHoc}</p>
             <p>{product.giaBan} ₫ - 100gram</p>
-            <button className="btn btn-submit">Mua ngay</button>
+            <button
+              className="btn btn-icon-card"
+              style={{backgroundColor:'#039B7B'}}
+              onClick={() => updateCart(product.maLa, 1, product.tenLa, product.giaBan, product.hinhAnh)}>
+              <i class="bi bi-bag"></i>
+            </button>
           </div>
         </div>
         <div class="ql-editor" dangerouslySetInnerHTML={{ __html: product.noiDungKhac }}>

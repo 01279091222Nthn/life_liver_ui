@@ -44,58 +44,6 @@ export const Cart = () => {
 
     return (
         <div className="row">
-            {/* <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Sản phẩm</th>
-                            <th scope="col">Giá bán</th>
-                            <th scope="col">Số lượng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cart.length === 0 ?
-                            <tr>
-                                <td colSpan={3}>Chưa có sản phẩm</td>
-                            </tr> :
-                            cart.map((c, i) => (
-                                <tr key={c.maLa}>
-                                    <td>{c.tenLa}</td>
-                                    <td>{c.giaBan}</td>
-                                    <td>
-                                        <div style={{ display: 'inline' }}>
-                                            <div className="add-product">
-                                                <i class="bi bi-dash-circle"
-                                                    onClick={() => (
-                                                        c.soLuong > 1 ? updateSL(i, -1) : ''
-                                                    )}></i>
-                                                <input value={c.soLuong} />
-                                                <i class="bi bi-plus-circle"
-                                                    onClick={() => updateSL(i, 1)}></i>
-                                            </div>
-                                        </div>
-                                        <button className="btn btn-feature delete"
-                                            onClick={() => removeProduct(c.maLa, i)}>
-                                            <i class="bi bi-x-lg"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>{
-                        amount > 0 ?
-                            <tfoot>
-                                <tr>
-                                    <td colSpan={3}>
-                                        <div style={{ display: 'flex', float: 'right', alignItems: 'center' }}>
-                                            <h5 style={{ margin: 'auto 10px' }}>{amount}</h5>
-                                            <Link to='/Paying' className="link" ><button className="btn btn-submit ">Thanh toán</button></Link>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            :
-                            null}
-                </table> */}
             <div className="col-12 col-md-6">
                 {cart.length === 0 ?
                     <></> :

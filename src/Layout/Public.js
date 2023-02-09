@@ -13,6 +13,8 @@ import { Home } from "../Component/Home";
 import { VerifyOTP } from "../Component/VerifyOTP";
 import { Payment } from "../Component/Payment";
 import SuccessPayment from "../Component/SuccessPayment";
+import { Liver } from "../Component/Liver";
+import { LiverDetail } from "../Component/LiverDetail";
 
 const Public = () => {
 
@@ -30,7 +32,9 @@ const Public = () => {
                 <Route path="Cart" element={<Customer><Cart /></Customer>} />
                 <Route path="Payment" element={<Customer><Payment/></Customer>} />
                 <Route path="Payment/Verify" element={<Customer><VerifyOTP/></Customer>}/>
-                <Route path="Payment/Success" element={<Customer><SuccessPayment/></Customer>} />
+                <Route path="Payment/Success" element={<Customer><SuccessPayment/></Customer>}/>
+                <Route path="Liver" element={<Customer><Liver/></Customer>}/>
+                <Route path="Liver/:maBenh" element={<Customer><LiverDetail/></Customer>}/>
             </Routes>
         </>
     )

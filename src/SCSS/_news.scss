@@ -1,5 +1,7 @@
 .ls-news {
-  width: 80%;
+  display: flex;
+  align-items: center;
+  width: 58%;
   height: 200px;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -23,5 +25,12 @@
   }
   p{
     font-style: italic;
+  }
+}
+
+
+@media (max-width:1000px) {
+  .ls-news{
+    width: 80%;
   }
 }

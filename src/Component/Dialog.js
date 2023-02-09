@@ -154,7 +154,11 @@ const Dialog = () => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal" onClick={() => setFiles([])}>&times;</button>
+                        <button type="button" className="close" data-dismiss="modal"
+                        onClick={() => {
+                            setFiles([])
+                            stopUserCamera()
+                            }}>&times;</button>
                     </div>
                     <div className="modal-body">
                         <div className="camera-img-option">

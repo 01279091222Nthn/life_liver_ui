@@ -12,20 +12,15 @@ export const OrderDetail = () => {
 
     useEffect(() => {
         const getOrderDetail = () => {
-            axios.get(`http://127.0.0.1:8000/donhang/${params.maDonHang}/`)
-                .then((res) => {
-                    setOrder(res.data)
-                    axios.get(`http://127.0.0.1:8000/khachhang/${res.data.maKhachHang}/`)
-                        .then((res) => {
-                            setCustomer(res.data)
-                        })
-                })
             axios.get(`http://127.0.0.1:8000/ctdonhang/${params.maDonHang}/`)
                 .then((res) => {
-                    setOrderDetail(res.data)
+                    setOrder(res.data.DonHang)
+                    setOrderDetail(res.data.CTDonHang)
+                    setCustomer(res.data.KhachHang)
                 })
         }
         getOrderDetail()
+        window.scrollTo(0, 0);
     }, [])
 
     return (

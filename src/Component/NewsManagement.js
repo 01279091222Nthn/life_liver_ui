@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 const NewsManagement = () => {
 
     const [tinTuc, setTinTuc] = useState([])
+    const [page, setPage] = useState({
+        current: 0,
+        start: 0,
+        end: 5,
+    })
 
     const deleteTinTuc = (maTinTuc) => {
         axios.delete(`http://127.0.0.1:8000/tintuc/${maTinTuc}/`)
@@ -27,6 +32,17 @@ const NewsManagement = () => {
         }
         getTinTuc()
     }, [])
+
+    const onChangePage = (num) => {
+        const i = page.current + num
+        setPage(
+            {
+                ...page,
+                current: i,
+                start: i * 5,
+                end: i * 5 + 5,
+            })
+    }
 
     const formatDate = (date) => {
         var d = new Date(date);
@@ -53,7 +69,6 @@ const NewsManagement = () => {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
                             <th scope="col">Tiêu đề</th>
                             <th scope="col">Ngày đăng
                                 <Link to='/Manager/News/Add'>
@@ -69,9 +84,8 @@ const NewsManagement = () => {
                             <tr>
                                 <td colSpan={3}>Chưa có tin tức</td>
                             </tr> :
-                            tinTuc.map((t, i) => (
+                            tinTuc.slice(page.start, page.end).map((t, i) => (
                                 <tr key={t.maTinTuc}>
-                                    <td>{i + 1}</td>
                                     <td scope="row">{t.tieuDe}</td>
                                     <td>{formatDate(t.ngayDang)}
                                         <div style={{ display: 'inline' }}>
@@ -91,6 +105,15 @@ const NewsManagement = () => {
                             ))
                         }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan={3} style={{ textAlign: 'end' }}>
+                                <button className="btn" onClick={() => onChangePage(-1)}><i class="bi bi-caret-left"></i></button>
+                                {page.current + 1} - {Math.ceil(tinTuc.length / 5)}
+                                <button className="btn" onClick={() => onChangePage(1)}><i class="bi bi-caret-right"></i></button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </>

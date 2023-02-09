@@ -242,7 +242,6 @@ export const UpdateProduct = () => {
                     </Link>
                 </div>
             </div>
-
         </>
     )
 }

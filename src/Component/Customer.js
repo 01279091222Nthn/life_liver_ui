@@ -19,6 +19,10 @@ const menu = [
         url: '/News',
     },
     {
+        tieude: 'Bệnh gan',
+        url: '/Liver',
+    },
+    {
         tieude: 'Về chúng tôi',
         url: '/AboutUs',
     },
@@ -77,61 +81,69 @@ const Customer = ({ children }) => {
             <div className={showMenu ? 'blur' : ''} onClick={() => setShowMenu(!showMenu)}></div>
             <div className={pos > 0 ? 'header scrolled' : 'header'}>
                 <div className="row header-tab">
-                    <div className="col-2 header-btn">
+                    <div className="col-1 col-md-2 header-btn">
                         <button className="btn btn-icon" onClick={() => setShowMenu(!showMenu)}><i class="bi bi-list"></i></button>
                     </div>
-                    <div className="col-8">
+                    <div className="col-11 col-md-8 header-btn">
                         <img className={pos > 0 ? 'logo scrolled' : 'logo'} src="http://127.0.0.1:8000/media/uploads/z4040943532997_f4b86dab4345557c70e50901b474142b.jpg" alt="logo" />
                     </div>
-                    <div className="col-2 header-btn" style={{ display: 'flex' }}>
+                    <div className="col-12 col-md-2 header-btn" style={{ display: 'flex' }}>
                         <button className="btn btn-icon" data-toggle="modal" data-target="#search"><i class="bi bi-search"></i></button>
                         <button className="btn btn-icon" data-toggle="modal" data-target="#detection"><i class="bi bi-image"></i></button>
                         <Link to={'/Cart'} className='link'>
-                            <button className="btn btn-icon" style={{position:'relative'}}>
+                            <button className="btn btn-icon" style={{ position: 'relative' }}>
                                 <i class="bi bi-cart"></i>
-                                {cart.length>0?
-                                <span className="cart-num">{cart.length}</span>
-                                :<></>}
+                                {cart.length > 0 ?
+                                    <span className="cart-num">{cart.length}</span>
+                                    : <></>}
                             </button>
                         </Link>
                     </div>
                 </div>
             </div>
-            <div style={{ paddingLeft: '10px', position: 'relative' }}>
-                {/* Phần body */}
-                <div className="row" style={{ height: '80px' }}></div>
-                <div className="row">
-                    <div className="col">
-                        {children}
-                    </div>
+            <div >
+                <div style={{ height: '80px' }}></div>
+                <div style={{ display: 'block' }}>
+                    {children}
                 </div>
-                {/* Phần footer */}
-                <footer className="row">
-                    <div className="footer">
-                        <div className="row">
-                            <div className="col">
-                                <p className="text-bold">Giới thiệu</p>
-                                <p>Trang web dự đoán và bán sản phẩm lá thuốc trị bệnh gan</p>
-                                <p className="text-bold">Thành viên</p>
-                                <p>Phạm Hoàng Hiệp</p>
-                                <p>Ngô Thuỵ Hồng Ngọc</p>
-                                <p>Nguyễn Hải Đăng</p>
-                            </div>
-                            <div className="col">
-                                <p className="text-bold">Liên hệ</p>
-                                <p>140 Lê Trọng Tấn, phường Tây Thạnh, quận Tân Phú, TP.HCM</p>
-                                <p>2001190449@hufi.edu.vn</p>
-                            </div>
-                            <div className="col">
-                                <Link to='/' className="link"><p>Trang chủ</p></Link>
-                                <Link to='/Product' className="link"><p>Sản Phẩm</p></Link>
+                <div className="footer">
+                    <div className="row">
+                        <div className="col-12 col-md-6">
+                            <p className="text-bold">Giới thiệu</p>
+                            <p>Website tra cứu và mua dược liệu điều trị bệnh gan</p>
+                            <p className="text-bold">Thành viên</p>
+                            <p>Phạm Hoàng Hiệp</p>
+                            <p>Ngô Thuỵ Hồng Ngọc</p>
+                            <p>Nguyễn Hải Đăng</p>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <p className="text-bold">Địa chỉ</p>
+                                    <p>140 Lê Trọng Tấn, Tây Thạnh, Tân Phú</p>
+                                    <p className="text-bold">Hotline</p>
+                                    <p>0815734366</p>
+                                </div>
+                                <div className="col-12 col-md-6 menu-social">
+                                    <a href={'https://www.facebook.com/profile.php?id=100090006040777'} target="_blank">
+                                        <button>
+                                            <i class="bi bi-facebook"></i>
+                                        </button>
+                                    </a>
+                                    <a>
+                                        <button>
+                                            <i class="bi bi-youtube"></i>
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <a className="line-footer"></a>
-                        <p style={{ margin: 'auto' }}>@BOGAN 2022</p>
+                        <hr />
+                        <p className="copyright">Copyright 2023 | Liver Life</p>
                     </div>
-                </footer>
+                </div>
             </div>
+
         </div>
     )
 }

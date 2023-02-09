@@ -17,6 +17,10 @@ const menu = [
         tieude: 'Hoá đơn',
         url: '/Manager/Order',
     },
+    {
+        tieude:'Bệnh gan',
+        url:'/Manager/Liver'
+    }
 ];
 
 
@@ -54,6 +58,16 @@ const Manager = ({ children }) => {
                     ))}
                 </div>
                 <div className="menu-social">
+                    <a href={'https://www.facebook.com/profile.php?id=100090006040777'} target="_blank">
+                        <button>
+                            <i class="bi bi-facebook"></i>
+                        </button>
+                    </a>
+                    <Link>
+                        <button>
+                            <i class="bi bi-youtube"></i>
+                        </button>
+                    </Link>
                     <Link to='/'>
                         <button>
                             <i class="bi bi-box-arrow-right"></i>
@@ -64,17 +78,17 @@ const Manager = ({ children }) => {
             <div className={showMenu ? 'blur' : ''} onClick={() => setShowMenu(!showMenu)}></div>
             <div className={pos > 0 ? "header scrolled" : "header"}>
                 <div className="row header-tab">
-                    <div className="col-1">
+                    <div className="col-2 header-btn">
                         <button className="btn btn-icon" onClick={() => setShowMenu(!showMenu)}><i class="bi bi-list"></i></button>
                     </div>
-                    <div className="col-10" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div className="col-8" style={{ display: 'flex', justifyContent: 'center' }}>
                         <img className={pos > 0 ? 'logo scrolled' : 'logo'} src="http://127.0.0.1:8000/media/uploads/z4040943532997_f4b86dab4345557c70e50901b474142b.jpg" alt="logo" />
                     </div>
-                    <div className="col-1 header-btn" style={{ display: 'flex' }}>
+                    <div className="col-2 header-btn" style={{ display: 'flex' }}>
                     </div>
                 </div>
             </div>
-            <div style={{ paddingLeft: '10px' }}>
+            <div>
                 {/* Phần body */}
                 <div className="row" style={{ height: '80px' }}></div>
                 <div className="row">
@@ -82,30 +96,40 @@ const Manager = ({ children }) => {
                         {children}
                     </div>
                 </div>
-                {/* Phần footer */}
-                <div className="row">
-                    <div className="footer">
-                        <div className="row">
-                            <div className="col">
-                                <p className="text-bold">Giới thiệu</p>
-                                <p>Trang web dự đoán và bán sản phẩm lá thuốc trị bệnh gan</p>
-                                <p className="text-bold">Thành viên</p>
-                                <p>Phạm Hoàng Hiệp</p>
-                                <p>Ngô Thuỵ Hồng Ngọc</p>
-                                <p>Nguyễn Hải Đăng</p>
-                            </div>
-                            <div className="col">
-                                <p className="text-bold">Liên hệ</p>
-                                <p>140 Lê Trọng Tấn, phường Tây Thạnh, quận Tân Phú, TP.HCM</p>
-                                <p>2001190449@hufi.edu.vn</p>
-                            </div>
-                            <div className="col">
-                                <Link to='/' className="link"><p>Trang chủ</p></Link>
-                                <Link to='/Product' className="link"><p>Sản Phẩm</p></Link>
+                <div className="footer">
+                    <div className="row">
+                        <div className="col-12 col-md-6">
+                            <p className="text-bold">Giới thiệu</p>
+                            <p>Website tra cứu và mua dược liệu điều trị bệnh gan</p>
+                            <p className="text-bold">Thành viên</p>
+                            <p>Phạm Hoàng Hiệp</p>
+                            <p>Ngô Thuỵ Hồng Ngọc</p>
+                            <p>Nguyễn Hải Đăng</p>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <p className="text-bold">Địa chỉ</p>
+                                    <p>140 Lê Trọng Tấn, Tây Thạnh, Tân Phú</p>
+                                    <p className="text-bold">Hotline</p>
+                                    <p>0815734366</p>
+                                </div>
+                                <div className="col-12 col-md-6 menu-social">
+                                    <a href={'https://www.facebook.com/profile.php?id=100090006040777'} target="_blank">
+                                        <button>
+                                            <i class="bi bi-facebook"></i>
+                                        </button>
+                                    </a>
+                                    <a>
+                                        <button>
+                                            <i class="bi bi-youtube"></i>
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <a className="line-footer"></a>
-                        <p>@BOGAN 2022</p>
+                        <hr />
+                        <p className="copyright">Copyright 2023 | Liver Life</p>
                     </div>
                 </div>
             </div>

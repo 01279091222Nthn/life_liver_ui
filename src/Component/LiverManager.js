@@ -1,28 +1,36 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 
-const ProductManagement = () => {
+export const LiverManager = () => {
 
-    const [la, setLa] = useState([])
+    const [benh, setBenh] = useState([])
     const [page, setPage] = useState({
         current: 0,
         start: 0,
         end: 5,
     })
 
-
-    const deletLaThuoc = (maLa) => {
-        axios.delete(`http://127.0.0.1:8000/lathuoc/${maLa}/`)
+    const deleteBenhGan = (maBenhGan) => {
+        axios.delete(`http://127.0.0.1:8000/benhgan/${maBenhGan}/`)
             .then((res) => {
                 toast.success('Xoá thành công')
-                setLa(la.filter((l) => l.maLa !== maLa))
             })
             .catch((res) => {
                 toast.error('Xoá thất bại')
             })
     }
+
+    useEffect(() => {
+        const getBenhGan = async () => {
+            await axios.get('http://127.0.0.1:8000/benhgan/')
+                .then((res) => {
+                    setBenh(res.data)
+                })
+        }
+        getBenhGan()
+    }, [])
 
     const onChangePage = (num) => {
         const i = page.current + num
@@ -35,70 +43,63 @@ const ProductManagement = () => {
             })
     }
 
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/lathuoc/`)
-            .then((res) => setLa(res.data))
-        setPage({ ...page, count: Math.ceil(la.length / 5) })
-    }, [])
-
     return (
-        <>
+        <div>
             <p className="bread">
-                <span>Quản lý sản phẩm</span>
+                <span>Quản lý bệnh gan</span>
             </p>
             <div>
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">Tên lá</th>
-                            <th scope="col">Giá bán</th>
-                            <th scope="col">Số lượng còn (1 gói - 100 gram)
-                                <Link to='/Manager/Product/Add'><button className="btn btn-feature add">
-                                    <i class="bi bi-plus-lg"></i>
-                                </button></Link>
+                            <th scope="col">Tên bệnh</th>
+                            <th scope="col">
+                                <Link to='/Manager/Liver/Add'>
+                                    <button className="btn btn-feature add">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </Link>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {la.length === 0 ?
+                        {benh.length === 0 ?
                             <tr>
-                                <td colSpan={3}>Chưa có sản phẩm</td>
+                                <td colSpan={3}>Chưa có bệnh gan</td>
                             </tr> :
-                            la.slice(page.start, page.end).map((l) =>
-                                <tr key={l.maLa}>
-                                    <td>{l.tenLa}</td>
-                                    <td>{l.giaBan}</td>
-                                    <td>{l.soLuongCon}
+                            benh.slice(page.start, page.end).map((b, i) => (
+                                <tr key={b.maBenh}>
+                                    <td scope="row">{b.tenBenh}</td>
+                                    <td>
                                         <div style={{ display: 'inline' }}>
                                         </div>
-                                        <Link to={`/Manager/Product/Update/${l.maLa}`}>
+                                        <Link to={`/Manager/Liver/Update/${b.maBenh}`}>
                                             <button className="btn btn-feature edit" >
                                                 <i class="bi bi-pencil"></i>
                                             </button>
                                         </Link>
-                                        <button onClick={() => deletLaThuoc(l.maLa)} className="btn btn-feature delete">
+                                        <button
+                                            onClick={() => deleteBenhGan(b.maBenh)}
+                                            className="btn btn-feature delete">
                                             <i class="bi bi-x-lg"></i>
                                         </button>
                                     </td>
                                 </tr>
-                            )
+                            ))
                         }
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colSpan={3} style={{ textAlign: 'end' }}>
                                 <button className="btn" onClick={() => onChangePage(-1)}><i class="bi bi-caret-left"></i></button>
-                                {page.current + 1} - {Math.ceil(la.length / 5)}
+                                {page.current + 1} - {Math.ceil(benh.length / 5)}
                                 <button className="btn" onClick={() => onChangePage(1)}><i class="bi bi-caret-right"></i></button>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-
-        </>
+        </div>
     )
-
 }
 
-export default ProductManagement;

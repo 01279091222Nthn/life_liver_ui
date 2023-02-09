@@ -8,6 +8,9 @@ const AboutUs = () => {
                     <span>Về chúng tôi</span>
                 </p>
                 <div className="row">
+                    <div className="col-12 aboutus-slogan">
+                        <h1>Sức khoẻ của khách hàng là niềm vui của chúng tôi !</h1>
+                    </div>
                     <div className="col-12 col-md-4">
                         <div className="aboutus-box">
                             <div className="aboutus-card">
