@@ -46,7 +46,7 @@ const Product = () => {
             <i class="bi bi-chevron-right" />
             <span>{search.text}</span>
           </>
-          : ''
+          : <></>
         }
       </p>
       <div className="grid-product">

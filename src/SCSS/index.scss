@@ -321,7 +321,7 @@ a {
     width: 50%;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
 
 .cart-num{
@@ -333,6 +333,56 @@ a {
     right:10px;
     top:10px;
     border-radius: 10px;
+}
+
+.train-img-box{
+    h2{
+        color: #039B7B;
+        font-weight: bold;
+    }
+    margin: 30px;
+}
+
+.upload-img-box{
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+}
+.train-model-box{
+    width: 100%;
+    display: grid;
+    flex-direction: column;
+}
+
+.advance-box{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.advance-btn-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    button{
+        width: fit-content;
+        padding: 20px;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 30px 0;
+    }
+}
+
+.progress-bar{
+    transition: 200ms linear;
+    background-color:#039B7B;
+}
+
+.progress{
+    height: 10px;
+    width: 80%;
+    border-radius: 10px;
+    margin: 0 auto;
 }
 
 

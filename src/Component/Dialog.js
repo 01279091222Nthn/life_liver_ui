@@ -213,6 +213,7 @@ const Dialog = () => {
                             <button className='btn btn-submit' data-toggle="modal" data-target="#detection"
                                 onClick={() => {
                                     detection()
+                                    stopUserCamera()
                                 }}>Tìm kiếm</button>
                         </Link>
                     </div>

@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 import { useContext } from 'react';
 import { Context } from './Store/Provider';
-import { Error404 } from './Component/Error404';
 import Private from './Layout/Private';
 import Public from './Layout/Public';
 

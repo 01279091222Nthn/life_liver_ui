@@ -59,8 +59,17 @@ export const UpdateProduct = () => {
         }
     }
 
+    function removeAccents(str) {
+        return str.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd')
+            .replace(/Đ/g, 'D')
+            .replace(/ /g, '');
+    }
+
     const onUpdateLaThuoc = () => {
         const laThuoc = {
+            maLa:removeAccents(tenLa.current.value),
             hinhAnh: hinhAnh.current.files[0],
             tenLa: tenLa.current.value,
             tenKhac: tenKhac.current.value,

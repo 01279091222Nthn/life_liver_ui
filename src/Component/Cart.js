@@ -7,7 +7,6 @@ import { Context } from "../Store/Provider";
 
 export const Cart = () => {
 
-
     const { cart, setCart } = useContext(Context)
     const [amount, setAmount] = useState()
     const navigate = useNavigate()
@@ -20,7 +19,7 @@ export const Cart = () => {
         setAmount(newAmount);
     }
 
-    const removeProduct = (mala, index) => {
+    const removeProduct = (mala) => {
         const newCart = cart.filter(c => c.maLa !== mala)
         setCart(newCart)
         localStorage.setItem('cart',JSON.stringify(newCart))
@@ -67,7 +66,7 @@ export const Cart = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <p className="rm-product" onClick={() => removeProduct(c.maLa, i)}>
+                                    <p className="rm-product" onClick={() => removeProduct(c.maLa)}>
                                         Xoá sản phẩm
                                     </p>
                                 </div>

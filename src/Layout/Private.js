@@ -10,6 +10,7 @@ import NewsManagement from "../Component/NewsManagement";
 import { OrderDetail } from "../Component/OrderDetail";
 import OrderManagement from "../Component/OrderManagement";
 import ProductManagement from "../Component/ProductManagement";
+import { TrainingModel } from "../Component/TrainingModel";
 import { UpdateLiver } from "../Component/UpdateLiver";
 import { UpdateNews } from "../Component/UpdateNews";
 import UpdateProduct from "../Component/UpdateProduct";
@@ -30,6 +31,7 @@ const Private = () => {
                 <Route path="Liver" element={<Manager><LiverManager/></Manager>}/>
                 <Route path="Liver/Add" element={<Manager><AddLiver/></Manager>}/>
                 <Route path="Liver/Update/:maBenh" element={<Manager><UpdateLiver/></Manager>}/>
+                <Route path="Training" element={<Manager><TrainingModel/></Manager>}/>
             </Routes>
         </>
     )

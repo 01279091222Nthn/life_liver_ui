@@ -20,7 +20,11 @@ const menu = [
     {
         tieude:'Bệnh gan',
         url:'/Manager/Liver'
-    }
+    },
+    {
+        tieude:'Huấn luyện mô hình',
+        url:'/Manager/Training'
+    },
 ];
 
 

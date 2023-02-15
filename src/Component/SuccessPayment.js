@@ -8,7 +8,7 @@ export default function SuccessPayment() {
                 <i class="bi bi-check-circle"></i>
             </div>
             <h2>Thanh toán thành công</h2>
-            <h5>Cảm ơn bạn đã mua hàng<br />Chi tiết đơn hàng sẽ được gửi về tin nhắn</h5>
+            <h5>Cảm ơn bạn đã mua hàng<br/>Chi tiết đơn hàng sẽ được gửi về tin nhắn</h5>
         </div>
     )
 }
